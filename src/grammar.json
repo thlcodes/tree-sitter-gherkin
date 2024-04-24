@@ -1,0 +1,383 @@
+{
+  "name": "gherkin",
+  "rules": {
+    "source_file": {
+      "type": "SYMBOL",
+      "name": "feature"
+    },
+    "feature": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_tags"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "feature_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "title"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "background"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "scenario"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "scenario_outline"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "background": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_tags"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "background_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "title"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "step"
+          }
+        }
+      ]
+    },
+    "scenario": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_tags"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "scenario_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "title"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "step"
+          }
+        }
+      ]
+    },
+    "scenario_outline": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_tags"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "scenario_outline_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "title"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "step"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "examples"
+        }
+      ]
+    },
+    "step": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "step_keywords"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "step_definition"
+        }
+      ]
+    },
+    "step_definition": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "reference"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "quoted_string"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "number"
+          },
+          {
+            "type": "PATTERN",
+            "value": "."
+          }
+        ]
+      }
+    },
+    "examples": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "examples_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "table"
+        }
+      ]
+    },
+    "table": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "table_header"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "table_row"
+          }
+        }
+      ]
+    },
+    "table_header": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "|"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "table_header_name"
+              },
+              {
+                "type": "STRING",
+                "value": "|"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "table_header_name": {
+      "type": "PATTERN",
+      "value": "\\w+"
+    },
+    "table_row": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "|"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "table_cell"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "|\n"
+        }
+      ]
+    },
+    "table_cell": {
+      "type": "PATTERN",
+      "value": "[^|]+"
+    },
+    "tag": {
+      "type": "PATTERN",
+      "value": "\\s+@[a-zA-z-_0-9]+"
+    },
+    "_tags": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "tag"
+      }
+    },
+    "feature_keyword": {
+      "type": "PATTERN",
+      "value": "Feature: "
+    },
+    "scenario_keyword": {
+      "type": "PATTERN",
+      "value": "(Scenario|Example): "
+    },
+    "scenario_outline_keyword": {
+      "type": "PATTERN",
+      "value": "Scenario (Outline|Template): "
+    },
+    "examples_keyword": {
+      "type": "PATTERN",
+      "value": "(Examples|Scenarios):"
+    },
+    "background_keyword": {
+      "type": "PATTERN",
+      "value": "Background:"
+    },
+    "step_keywords": {
+      "type": "PATTERN",
+      "value": "(Given|When|Then|And|But) "
+    },
+    "title": {
+      "type": "PATTERN",
+      "value": ".*"
+    },
+    "comment": {
+      "type": "PATTERN",
+      "value": "#.*"
+    },
+    "quoted_string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "reference"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[^\"<>]+"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "\""
+        }
+      ]
+    },
+    "number": {
+      "type": "PATTERN",
+      "value": "\\d+(.\\d+)?"
+    },
+    "reference": {
+      "type": "PATTERN",
+      "value": "<[^>]+>"
+    }
+  },
+  "extras": [
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    },
+    {
+      "type": "PATTERN",
+      "value": "\\r?\\n"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+

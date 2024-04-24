@@ -1,0 +1,31 @@
+{
+  "name": "tree-sitter-gherkin",
+  "version": "0.0.1",
+  "description": "Gherkin tree sitter grammar",
+  "main": "grammar.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "gherkin",
+    "tree-sitter",
+    "grammar"
+  ],
+  "author": "@thlcodes",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "node-debug2": "^0.2.0",
+    "tree-sitter-cli": "^0.20.7",
+    "typescript-language-server": "^3.3.0"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.feature",
+      "file-types": ["feature"],
+      "injection-regex": "gherkin"
+    }
+  ]
+}

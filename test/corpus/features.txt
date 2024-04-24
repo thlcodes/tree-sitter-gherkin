@@ -1,0 +1,121 @@
+==================
+Feature
+==================
+
+# comment1
+@tag1
+Feature: Bla
+
+  # comment2
+  @tag2 @tag3
+  Background: bliii
+    Given given
+    And given2
+
+  @tag4
+  @tag6 @tag5
+  Scenario: Bloo
+    Given given
+	# comment3
+	When when 234
+	Then then "bla"
+
+  Scenario Outline: Blaaa
+    Given given <abc> and
+	When when <def> and
+	Then then <ghi> etc.
+
+	Examples:
+	  | a | b |
+	  | 1 | 2 |
+	  | 3 | 4 |
+
+---
+
+(source_file
+  (comment)
+  (feature
+    (tag)
+    (feature_keyword)
+    (title)
+	(comment)
+	(background
+	  (tag)
+	  (tag)
+	  (background_keyword)
+	  (title)
+	  (step
+	    (step_keywords)
+		(step_definition)
+	  )
+	  (step
+	    (step_keywords)
+		(step_definition)
+	  )
+	)
+	(scenario
+	  (tag)
+	  (tag)
+	  (tag)
+	  (scenario_keyword)
+	  (title)	
+	  (step
+	    (step_keywords)
+		(step_definition)
+	  )
+	  (comment)
+	  (step
+	    (step_keywords)
+		(step_definition
+		  (number)
+		)
+	  )
+	  (step
+	    (step_keywords)
+		(step_definition
+		  (quoted_string)
+		)
+	  )
+	)	
+	(scenario_outline
+	  (scenario_outline_keyword)
+	  (title)	
+	  (step
+	    (step_keywords)
+		(step_definition
+		  (reference)
+		)
+	  )
+	  (step
+	    (step_keywords)
+		(step_definition
+		  (reference)
+		)
+	  )
+	  (step
+	    (step_keywords)
+		(step_definition
+		  (reference)
+		)
+	  )
+	  (examples
+	    (examples_keyword)
+		(table
+		  (table_header
+		    (table_header_name)
+		    (table_header_name)
+		  )
+		  (table_row
+		    (table_cell)  
+		    (table_cell)
+		  )
+		  (table_row
+		    (table_cell)  
+		    (table_cell)  
+		  )
+		)
+	  )
+	)	
+  )
+)
+	
