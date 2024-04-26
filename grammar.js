@@ -65,7 +65,12 @@ module.exports = grammar({
 
     comment: ($) => /#.*/,
 
-    quoted_string: ($) => seq('"', choice($.reference, /[^"<>]+/), '"'),
+    quoted_string: ($) =>
+      choice(
+        seq('"', choice($.reference, /[^"<>]+/), '"'),
+        seq("'", choice($.reference, /[^'<>]+/), "'"),
+        seq("`", choice($.reference, /[^`<>]+/), "`"),
+      ),
 
     number: ($) => /\d+(.\d+)?/,
 

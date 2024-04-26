@@ -5,7 +5,7 @@ Feature: Bla
 
   Background:
     Given given
-    And given2
+    And given a "string" and 'another'
     And with table
       | k  | v  |
       | 22 | 33 |

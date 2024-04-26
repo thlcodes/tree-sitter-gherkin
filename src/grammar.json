@@ -417,28 +417,59 @@
       "value": "#.*"
     },
     "quoted_string": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "\""
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "reference"
+              "type": "STRING",
+              "value": "\""
             },
             {
-              "type": "PATTERN",
-              "value": "[^\"<>]+"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "reference"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[^\"<>]+"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "\""
             }
           ]
         },
         {
-          "type": "STRING",
-          "value": "\""
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "'"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "reference"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[^'<>]+"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "'"
+            }
+          ]
         }
       ]
     },
