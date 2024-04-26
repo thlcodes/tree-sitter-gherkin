@@ -48,7 +48,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "feature_keyword"
+          "name": "section_keyword"
         },
         {
           "type": "SYMBOL",
@@ -71,11 +71,32 @@
           ]
         },
         {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "section"
+          }
+        }
+      ]
+    },
+    "section": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "background"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_tags"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_space"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -83,51 +104,46 @@
           ]
         },
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
+            {
+              "type": "SYMBOL",
+              "name": "section_keyword"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "title"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
             {
               "type": "SYMBOL",
               "name": "_space"
-            },
-            {
-              "type": "BLANK"
             }
           ]
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "scenario"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "scenario_outline"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "background": {
-      "type": "SEQ",
-      "members": [
-        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_tags"
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "step"
+                  }
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "_space"
+                  "name": "table"
                 }
               ]
             },
@@ -135,115 +151,6 @@
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "background_keyword"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_space"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "step"
-          }
-        }
-      ]
-    },
-    "scenario": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_tags"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_space"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "scenario_keyword"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "title"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_space"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "step"
-          }
-        }
-      ]
-    },
-    "scenario_outline": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_tags"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_space"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "scenario_outline_keyword"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "title"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_space"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "step"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "examples"
         }
       ]
     },
@@ -323,7 +230,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "examples_keyword"
+          "name": "section_keyword"
         },
         {
           "type": "SYMBOL",
@@ -473,29 +380,13 @@
         "name": "tag"
       }
     },
-    "feature_keyword": {
+    "section_keyword": {
       "type": "PATTERN",
-      "value": "Feature: "
-    },
-    "scenario_keyword": {
-      "type": "PATTERN",
-      "value": "(Scenario|Example): "
-    },
-    "scenario_outline_keyword": {
-      "type": "PATTERN",
-      "value": "Scenario (Outline|Template): "
-    },
-    "examples_keyword": {
-      "type": "PATTERN",
-      "value": "(Examples|Scenarios):"
-    },
-    "background_keyword": {
-      "type": "PATTERN",
-      "value": "Background:"
+      "value": "[\\w ]+:"
     },
     "step_keywords": {
       "type": "PATTERN",
-      "value": "(Given|When|Then|And|But) "
+      "value": "\\w+"
     },
     "title": {
       "type": "SYMBOL",

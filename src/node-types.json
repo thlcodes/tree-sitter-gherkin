@@ -1,28 +1,5 @@
 [
   {
-    "type": "background",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "background_keyword",
-          "named": true
-        },
-        {
-          "type": "step",
-          "named": true
-        },
-        {
-          "type": "tag",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "docstring",
     "named": true,
     "fields": {},
@@ -86,25 +63,6 @@
     }
   },
   {
-    "type": "examples",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "examples_keyword",
-          "named": true
-        },
-        {
-          "type": "table",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "feature",
     "named": true,
     "fields": {},
@@ -113,19 +71,11 @@
       "required": true,
       "types": [
         {
-          "type": "background",
+          "type": "section",
           "named": true
         },
         {
-          "type": "feature_keyword",
-          "named": true
-        },
-        {
-          "type": "scenario",
-          "named": true
-        },
-        {
-          "type": "scenario_outline",
+          "type": "section_keyword",
           "named": true
         },
         {
@@ -159,7 +109,7 @@
     }
   },
   {
-    "type": "scenario",
+    "type": "section",
     "named": true,
     "fields": {},
     "children": {
@@ -167,7 +117,7 @@
       "required": true,
       "types": [
         {
-          "type": "scenario_keyword",
+          "type": "section_keyword",
           "named": true
         },
         {
@@ -175,34 +125,7 @@
           "named": true
         },
         {
-          "type": "tag",
-          "named": true
-        },
-        {
-          "type": "title",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "scenario_outline",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "examples",
-          "named": true
-        },
-        {
-          "type": "scenario_outline_keyword",
-          "named": true
-        },
-        {
-          "type": "step",
+          "type": "table",
           "named": true
         },
         {
@@ -280,6 +203,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "step_keywords",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "summary",
@@ -369,23 +297,11 @@
     "named": false
   },
   {
-    "type": "background_keyword",
-    "named": true
-  },
-  {
     "type": "comment",
     "named": true
   },
   {
     "type": "docstring_line",
-    "named": true
-  },
-  {
-    "type": "examples_keyword",
-    "named": true
-  },
-  {
-    "type": "feature_keyword",
     "named": true
   },
   {
@@ -397,15 +313,7 @@
     "named": true
   },
   {
-    "type": "scenario_keyword",
-    "named": true
-  },
-  {
-    "type": "scenario_outline_keyword",
-    "named": true
-  },
-  {
-    "type": "step_keywords",
+    "type": "section_keyword",
     "named": true
   },
   {

@@ -7,40 +7,18 @@ module.exports = grammar({
     feature: ($) =>
       seq(
         optional(seq($._tags, $._space)),
-        $.feature_keyword,
+        $.section_keyword,
         $.title,
         $._space,
         optional($.summary),
-        optional($.background),
-        optional($._space),
-        repeat1(choice($.scenario, $.scenario_outline)),
+        repeat1($.section),
       ),
 
-    background: ($) =>
+    section: ($) =>
       seq(
         optional(seq($._tags, $._space)),
-        $.background_keyword,
-        $._space,
-        repeat1($.step),
-      ),
-
-    scenario: ($) =>
-      seq(
-        optional(seq($._tags, $._space)),
-        $.scenario_keyword,
-        $.title,
-        $._space,
-        repeat1($.step),
-      ),
-
-    scenario_outline: ($) =>
-      seq(
-        optional(seq($._tags, $._space)),
-        $.scenario_outline_keyword,
-        $.title,
-        $._space,
-        repeat1($.step),
-        $.examples,
+        seq($.section_keyword, optional($.title), $._space),
+        optional(choice(repeat1($.step), $.table)),
       ),
 
     step: ($) =>
@@ -54,7 +32,7 @@ module.exports = grammar({
     step_definition: ($) =>
       repeat1(choice($.reference, $.quoted_string, $.number, /./)),
 
-    examples: ($) => seq($.examples_keyword, $.table),
+    examples: ($) => seq($.section_keyword, $.table),
 
     table: ($) => seq($.table_header, repeat1($.table_row)),
 
@@ -77,12 +55,8 @@ module.exports = grammar({
     tag: ($) => /\s*@[a-zA-z-_0-9]+/,
     _tags: ($) => repeat1($.tag),
 
-    feature_keyword: ($) => /Feature: /,
-    scenario_keyword: ($) => /(Scenario|Example): /,
-    scenario_outline_keyword: ($) => /Scenario (Outline|Template): /,
-    examples_keyword: ($) => /(Examples|Scenarios):/,
-    background_keyword: ($) => /Background:/,
-    step_keywords: ($) => /(Given|When|Then|And|But) /,
+    section_keyword: ($) => /[\w ]+:/,
+    step_keywords: ($) => /\w+/,
 
     title: ($) => $._text,
 
