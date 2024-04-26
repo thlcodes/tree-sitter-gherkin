@@ -18,10 +18,6 @@
         {
           "type": "tag",
           "named": true
-        },
-        {
-          "type": "title",
-          "named": true
         }
       ]
     }
@@ -301,6 +297,11 @@
     }
   },
   {
+    "type": "summary_line",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "table",
     "named": true,
     "fields": {},
@@ -355,6 +356,11 @@
     }
   },
   {
+    "type": "title",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -403,19 +409,11 @@
     "named": true
   },
   {
-    "type": "summary_line",
-    "named": true
-  },
-  {
     "type": "table_cell",
     "named": true
   },
   {
     "type": "tag",
-    "named": true
-  },
-  {
-    "type": "title",
     "named": true
   },
   {

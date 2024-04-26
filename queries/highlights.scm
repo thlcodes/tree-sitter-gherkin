@@ -23,3 +23,5 @@
 (tag) @label
 
 (table_cell) @constant
+
+(docstring) @text

@@ -52,7 +52,6 @@ Feature: Bla
 	(background
 	  (tag)
 	  (background_keyword)
-	  (title)
 	  (step
 	    (step_keywords)
 		(step_definition)

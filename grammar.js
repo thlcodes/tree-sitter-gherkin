@@ -2,29 +2,43 @@ module.exports = grammar({
   name: "gherkin",
 
   rules: {
-    source_file: ($) => $.feature,
+    source_file: ($) => seq(optional($._space), $.feature),
 
     feature: ($) =>
       seq(
-        optional($._tags),
+        optional(seq($._tags, $._space)),
         $.feature_keyword,
         $.title,
+        $._space,
         optional($.summary),
         optional($.background),
+        optional($._space),
         repeat1(choice($.scenario, $.scenario_outline)),
       ),
 
     background: ($) =>
-      seq(optional($._tags), $.background_keyword, $.title, repeat1($.step)),
+      seq(
+        optional(seq($._tags, $._space)),
+        $.background_keyword,
+        $._space,
+        repeat1($.step),
+      ),
 
     scenario: ($) =>
-      seq(optional($._tags), $.scenario_keyword, $.title, repeat1($.step)),
+      seq(
+        optional(seq($._tags, $._space)),
+        $.scenario_keyword,
+        $.title,
+        $._space,
+        repeat1($.step),
+      ),
 
     scenario_outline: ($) =>
       seq(
-        optional($._tags),
+        optional(seq($._tags, $._space)),
         $.scenario_outline_keyword,
         $.title,
+        $._space,
         repeat1($.step),
         $.examples,
       ),
@@ -33,7 +47,8 @@ module.exports = grammar({
       seq(
         $.step_keywords,
         $.step_definition,
-        optional(choice($.table, $.docstring)),
+        $._space,
+        optional(seq(choice($.table, $.docstring), $._space)),
       ),
 
     step_definition: ($) =>
@@ -69,10 +84,10 @@ module.exports = grammar({
     background_keyword: ($) => /Background:/,
     step_keywords: ($) => /(Given|When|Then|And|But) /,
 
-    title: ($) => /.*/,
+    title: ($) => $._text,
 
-    summary: ($) => repeat1($.summary_line),
-    summary_line: ($) => /\s+.*/,
+    summary: ($) => repeat1(seq($.summary_line, $._space)),
+    summary_line: ($) => $._text,
 
     comment: ($) => /#.*/,
 
@@ -81,6 +96,9 @@ module.exports = grammar({
     number: ($) => /\d+(.\d+)?/,
 
     reference: ($) => /<[^>]+>/,
+
+    _text: ($) => /[^\n]+/,
+    _space: ($) => /\s+/,
   },
-  extras: ($) => [$.comment, /\s/, /\r?\n/],
+  extras: ($) => [$.comment, $._space],
 });
