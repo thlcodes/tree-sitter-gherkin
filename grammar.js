@@ -1,97 +1,86 @@
 module.exports = grammar({
-  name: 'gherkin',
+  name: "gherkin",
 
   rules: {
-    source_file: $ => $.feature,
-    
-    feature: $ => seq(
-      optional($._tags),
-      $.feature_keyword,
-      $.title,
-      optional($.background),
-      repeat1(choice($.scenario, $.scenario_outline)),
-    ),
+    source_file: ($) => $.feature,
 
-    background: $ => seq(
-      optional($._tags),
-      $.background_keyword,
-      $.title,
-      repeat1($.step),
-    ),
-    
-    scenario: $ => seq(
-      optional($._tags),
-      $.scenario_keyword,
-      $.title,
-      repeat1($.step),
-    ),
+    feature: ($) =>
+      seq(
+        optional($._tags),
+        $.feature_keyword,
+        $.title,
+        optional($.summary),
+        optional($.background),
+        repeat1(choice($.scenario, $.scenario_outline)),
+      ),
 
-    scenario_outline: $ => seq(
-      optional($._tags),
-      $.scenario_outline_keyword,
-      $.title,
-      repeat1($.step),
-      $.examples
-    ),
+    background: ($) =>
+      seq(optional($._tags), $.background_keyword, $.title, repeat1($.step)),
 
-    step: $ => seq(
-      $.step_keywords,
-      $.step_definition,
-    ),
+    scenario: ($) =>
+      seq(optional($._tags), $.scenario_keyword, $.title, repeat1($.step)),
 
-    step_definition: $ => repeat1(choice(
-      $.reference,
-      $.quoted_string,
-      $.number,
-      /./
-    )),
-    
-    examples: $ => seq(
-      $.examples_keyword,
-      $.table
-    ),
+    scenario_outline: ($) =>
+      seq(
+        optional($._tags),
+        $.scenario_outline_keyword,
+        $.title,
+        repeat1($.step),
+        $.examples,
+      ),
 
-    table: $ => seq(
-      $.table_header,
-      repeat1($.table_row)
-    ),
+    step: ($) =>
+      seq(
+        $.step_keywords,
+        $.step_definition,
+        optional(choice($.table, $.docstring)),
+      ),
 
-    table_header: $ => seq(
-      "|",
-      repeat1(seq($.table_header_name, "|")),
-    ),
+    step_definition: ($) =>
+      repeat1(choice($.reference, $.quoted_string, $.number, /./)),
 
-    table_header_name: $ => /\w+/,
+    examples: ($) => seq($.examples_keyword, $.table),
 
-    table_row: $ => seq(
-      repeat1(seq("|", $.table_cell)), "|\n"
-    ),
+    table: ($) => seq($.table_header, repeat1($.table_row)),
 
-    table_cell: $ => /[^|]+/,
-    
-    tag: $ => /\s+@[a-zA-z-_0-9]+/,
-    _tags: $ => repeat1($.tag),
+    table_header: ($) => seq("|", repeat1(seq($.table_header_name, "|"))),
 
-    feature_keyword: $ => /Feature: /,
-    scenario_keyword: $ => /(Scenario|Example): /,
-    scenario_outline_keyword: $ => /Scenario (Outline|Template): /,
-    examples_keyword: $ => /(Examples|Scenarios):/,
-    background_keyword: $ => /Background:/,
-    step_keywords: $ => /(Given|When|Then|And|But) /,
+    table_header_name: ($) => /\w+/,
 
-    title: $ => /.*/,
+    table_row: ($) => seq(repeat1(seq("|", $.table_cell)), "|\n"),
 
-    comment: $ => /#.*/,
+    table_cell: ($) => /[^|]+/,
 
-    quoted_string: $ => seq('"', choice($.reference, /[^"<>]+/) ,'"'),
-    
-    number: $ => /\d+(.\d+)?/,
+    docstring: ($) =>
+      seq($.docstring_start, $.docstring_content, $.docstring_end),
+    docstring_start: ($) => seq('"""', optional($.docstring_lang)),
+    docstring_end: ($) => '"""',
+    docstring_lang: ($) => /\w+/,
+    docstring_content: ($) => repeat1($.docstring_line),
+    docstring_line: ($) => /.+/,
 
-    reference: $ => /<[^>]+>/,
+    tag: ($) => /\s*@[a-zA-z-_0-9]+/,
+    _tags: ($) => repeat1($.tag),
+
+    feature_keyword: ($) => /Feature: /,
+    scenario_keyword: ($) => /(Scenario|Example): /,
+    scenario_outline_keyword: ($) => /Scenario (Outline|Template): /,
+    examples_keyword: ($) => /(Examples|Scenarios):/,
+    background_keyword: ($) => /Background:/,
+    step_keywords: ($) => /(Given|When|Then|And|But) /,
+
+    title: ($) => /.*/,
+
+    summary: ($) => repeat1($.summary_line),
+    summary_line: ($) => /\s+.*/,
+
+    comment: ($) => /#.*/,
+
+    quoted_string: ($) => seq('"', choice($.reference, /[^"<>]+/), '"'),
+
+    number: ($) => /\d+(.\d+)?/,
+
+    reference: ($) => /<[^>]+>/,
   },
-  extras: $ => [
-    $.comment,
-    /\s/,
-    /\r?\n/
-  ]
+  extras: ($) => [$.comment, /\s/, /\r?\n/],
 });

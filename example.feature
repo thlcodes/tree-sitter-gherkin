@@ -1,30 +1,37 @@
-# comment1
-@tag1
+@tag12
 Feature: Bla
+  bla bla lba
+  blibb
 
-  # comment2
-  @tag2 @tag3
-  Background: bliii
+  Background:
     Given given
     And given2
+    And with table
+      | k  | v  |
+      | 22 | 33 |
+    And with docstring
+      """json
+      {
+        "a": "b"
+      }
+      """
 
-  @tag4
-  @tag6 @tag5
+  @tag4 @tag6 @tag5
   Scenario: Bloo
     Given given
-	  # comment3
-	  When when 234
-	  Then then "bla"
+	# comment3
+    When when 234
+    Then then "sdgsdg"
 
   Scenario Outline: Blaaa
     Given given <abc> and
-	  When when <def> and
-	  Then then <ghi> etc.
+    When when <def> and
+    Then then <ghi> etc.
 
-	  Examples:
-	    | a | b |
-	    | 1 | 2 |
-	    | 3 | 4 |
+    Examples:
+      | a | b |
+      | 1 | 2 |
+      | 3 | 4 |
 
   Scenario: Last
     Then end

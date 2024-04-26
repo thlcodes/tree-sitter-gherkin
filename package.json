@@ -6,11 +6,7 @@
   "scripts": {
     "test": "npm run test"
   },
-  "keywords": [
-    "gherkin",
-    "tree-sitter",
-    "grammar"
-  ],
+  "keywords": ["gherkin", "tree-sitter", "grammar"],
   "author": "@thlcodes",
   "license": "MIT",
   "dependencies": {

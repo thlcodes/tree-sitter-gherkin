@@ -5,12 +5,19 @@ Feature
 # comment1
 @tag1
 Feature: Bla
+  Summary spanning
+  two lines
 
-  # comment2
-  @tag2 @tag3
-  Background: bliii
+  @ag3
+  Background:
     Given given
     And given2
+    And docstring
+      """json
+      {
+        "a": 123
+      }
+      """
 
   @tag4
   @tag6 @tag5
@@ -38,9 +45,11 @@ Feature: Bla
     (tag)
     (feature_keyword)
     (title)
-	(comment)
+    (summary
+      (summary_line)
+      (summary_line)
+    )
 	(background
-	  (tag)
 	  (tag)
 	  (background_keyword)
 	  (title)
@@ -52,13 +61,28 @@ Feature: Bla
 	    (step_keywords)
 		(step_definition)
 	  )
+      (step
+	    (step_keywords)
+		(step_definition)
+		(docstring
+          (docstring_start
+            (docstring_lang)
+          )
+          (docstring_content
+            (docstring_line)
+            (docstring_line)
+            (docstring_line)
+          )
+          (docstring_end)
+        )
+	  )
 	)
 	(scenario
 	  (tag)
 	  (tag)
 	  (tag)
 	  (scenario_keyword)
-	  (title)	
+	  (title)
 	  (step
 	    (step_keywords)
 		(step_definition)
@@ -76,10 +100,10 @@ Feature: Bla
 		  (quoted_string)
 		)
 	  )
-	)	
+	)
 	(scenario_outline
 	  (scenario_outline_keyword)
-	  (title)	
+	  (title)
 	  (step
 	    (step_keywords)
 		(step_definition
@@ -106,16 +130,15 @@ Feature: Bla
 		    (table_header_name)
 		  )
 		  (table_row
-		    (table_cell)  
+		    (table_cell)
 		    (table_cell)
 		  )
 		  (table_row
-		    (table_cell)  
-		    (table_cell)  
+		    (table_cell)
+		    (table_cell)
 		  )
 		)
 	  )
-	)	
+	)
   )
 )
-	
