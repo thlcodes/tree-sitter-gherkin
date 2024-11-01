@@ -371,7 +371,7 @@
     },
     "tag": {
       "type": "PATTERN",
-      "value": "\\s*@[a-zA-z-_0-9]+"
+      "value": "\\s*@[^@\\s]+"
     },
     "_tags": {
       "type": "REPEAT1",
@@ -506,4 +506,3 @@
   "inline": [],
   "supertypes": []
 }
-
