@@ -52,7 +52,7 @@ module.exports = grammar({
     docstring_content: ($) => repeat1($.docstring_line),
     docstring_line: ($) => /.+/,
 
-    tag: ($) => /\s*@[a-zA-z-_0-9]+/,
+    tag: ($) => /\s*@[^@\s]+/,
     _tags: ($) => repeat1($.tag),
 
     section_keyword: ($) => /[\w ]+:/,
