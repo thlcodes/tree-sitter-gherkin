@@ -142,6 +142,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": false,
@@ -301,8 +302,13 @@
     "named": false
   },
   {
+    "type": "`",
+    "named": false
+  },
+  {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "docstring_line",

@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-gherkin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gherkin tree sitter grammar",
   "main": "grammar.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "node-debug2": "^0.2.0",
-    "tree-sitter-cli": "^0.20.7",
+    "tree-sitter-cli": "^0.25.3",
     "typescript-language-server": "^3.3.0"
   },
   "tree-sitter": [

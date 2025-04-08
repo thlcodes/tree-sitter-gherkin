@@ -4,7 +4,7 @@ Feature: Bla
   blibb
 
   Background:
-    Given given
+    Given given.day
     And given a "string" and 'another'
     And with table
       | k  | v  |
@@ -16,7 +16,7 @@ Feature: Bla
       }
       """
 
-  @tag4 @tag6 @tag5
+  @tag4 @tag6 @tag.5
   Scenario: Bloo
     Given given
 	# comment3

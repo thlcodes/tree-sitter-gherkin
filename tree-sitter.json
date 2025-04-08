@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "gherkin",
+      "camelcase": "Gherkin",
+      "title": "Gherkin",
+      "scope": "source.gherkin",
+      "file-types": [
+        "feature"
+      ],
+      "injection-regex": "^gherkin$",
+      "class-name": "TreeSitterGherkin"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.2",
+    "license": "MIT",
+    "description": "Gherkin grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Thomas Liebeskind",
+        "email": "thomas.liebeskind@gmail.com",
+        "url": "https://thl.codes/"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/thlcodes/tree-sitter-gherkin"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "node": true,
+    "python": false,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}
